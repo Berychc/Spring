@@ -1,12 +1,23 @@
 package com.example.spring.Service;
 
+import com.example.spring.product.CartItem;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceIml implements CartService {
 
-    public void addItem(List<Long> productId) {
+    private final List<CartItem> items = new ArrayList<>();
+
+    @Override
+    public void addItem(int id) {
+        items.add(new CartItem(id));
+    }
+    @Override
+    public List<Integer> getItems() {
+        return items.stream().map(CartItem::getItemId).collect(Collectors.toList());
     }
 }
