@@ -1,4 +1,4 @@
-package com.example.spring.Service;
+package com.example.spring.service;
 
 import com.example.spring.product.CartItem;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,16 @@ public class CartServiceIml implements CartService {
     public void addItem(int id) {
         items.add(new CartItem(id));
     }
+
+    @Override
+    public void addAllItems(List<Integer> allId) {
+        items.addAll(new ArrayList<>());
+    }
+
     @Override
     public List<Integer> getItems() {
         return items.stream().map(CartItem::getItemId).collect(Collectors.toList());
     }
 }
+
+
