@@ -18,7 +18,6 @@ public class CartController {
         this.cartService = cartService;
     }
 
-
     @PostMapping("/add")
     public void addItem(@RequestParam("id") List<Integer> ids) {
         for (int id : ids) {
