@@ -1,30 +1,33 @@
 package com.example.spring.service;
 
-import com.example.spring.product.CartItem;
+import com.example.spring.product.Cart;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CartServiceIml implements CartService {
 
-    private final List<CartItem> items = new ArrayList<>();
+    private final Cart cart;
+
+    public CartServiceIml(Cart cart) {
+        this.cart = cart;
+    }
 
     @Override
-    public void addItem(int id) {
-        items.add(new CartItem(id));
+    public void addId(int id) {
+        cart.add(id);
     }
 
     @Override
     public void addAllItems(List<Integer> allId) {
-        items.addAll(new ArrayList<>());
+        cart.addAllItems(allId);
     }
 
     @Override
     public List<Integer> getItems() {
-        return items.stream().map(CartItem::getItemId).collect(Collectors.toList());
+        return Collections.unmodifiableList(cart.getItemId());
     }
 }
 
