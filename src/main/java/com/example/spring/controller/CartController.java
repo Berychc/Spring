@@ -12,18 +12,16 @@ import java.util.List;
 @RequestMapping("/store/order")
 public class CartController {
 
-    @Autowired
     private final CartService cartService;
 
     public CartController(CartService cartService) {
         this.cartService = cartService;
     }
 
-
     @PostMapping("/add")
     public void addItem(@RequestParam("id") List<Integer> ids) {
         for (int id : ids) {
-            cartService.addItem(id);
+            cartService.addId(id);
         }
     }
 
